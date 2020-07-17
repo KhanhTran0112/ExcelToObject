@@ -101,7 +101,7 @@ namespace ConsoleApp1
         {
             Console.OutputEncoding = Encoding.UTF8;
             //ReadExcel();
-            ReadData();
+            //ReadData();
 
 
             Console.Write("Gõ run để chạy: ");
@@ -123,7 +123,7 @@ namespace ConsoleApp1
 
                 var createApp = chromeDriver.FindElementByXPath("/html/body/div/aside/section/ul/li[2]/ul/li[2]/a");
                 createApp.Click();
-
+                /*
                 for (int i = 0; i < apps.Count; i++)
                 {
                     var title = chromeDriver.FindElementByXPath("/html/body/div/div/section[2]/div/div/div/form/div[1]/div[1]/input");
@@ -144,7 +144,6 @@ namespace ConsoleApp1
                     var selectType = new SelectElement(type);
                     selectType.SelectByIndex(2);
 
-
                     var developer = chromeDriver.FindElementByXPath("/html/body/div/div/section[2]/div/div/div/form/div[1]/div[4]/div[1]/div/input");
                     developer.SendKeys(apps[1].developer);
 
@@ -155,12 +154,57 @@ namespace ConsoleApp1
                     fileSize.SendKeys(apps[1].size);
 
                     var fullDescription = chromeDriver.FindElementByClassName("wysihtml5-sandbox");
-                    
                     fullDescription.SendKeys(apps[1].description.Trim());
-                    Console.WriteLine("asdasd");
+
+                    var submit = chromeDriver.FindElementByXPath("/html/body/div/div/section[2]/div/div/div/form/div[2]/button");
+                    submit.Click();
+
+                }*/
+
+                for (int i = 0; i < 2; i++)
+                {
+                    var title = chromeDriver.FindElementByXPath("/html/body/div/div/section[2]/div/div/div/form/div[1]/div[1]/input");
+                    title.SendKeys("abc");
+
+                    var description = chromeDriver.FindElementByXPath("/html/body/div/div/section[2]/div/div/div/form/div[1]/div[2]/input");
+                    description.SendKeys("abc");
+
+                    var category = chromeDriver.FindElementByName("category");
+                    var selectCategory = new SelectElement(category);
+                    selectCategory.SelectByIndex(9);
+
+                    var platform = chromeDriver.FindElementByName("platform");
+                    var selectPlatform = new SelectElement(platform);
+                    selectPlatform.SelectByIndex(2);
+
+                    var type = chromeDriver.FindElementByName("type");
+                    var selectType = new SelectElement(type);
+                    selectType.SelectByIndex(2);
+
+                    var developer = chromeDriver.FindElementByXPath("/html/body/div/div/section[2]/div/div/div/form/div[1]/div[4]/div[1]/div/input");
+                    developer.SendKeys("abc");
+
+                    var urlApp = chromeDriver.FindElementByXPath("/html/body/div/div/section[2]/div/div/div/form/div[1]/div[4]/div[2]/div/input");
+                    urlApp.SendKeys("abc");
+
+                    var fileSize = chromeDriver.FindElementByXPath("/html/body/div/div/section[2]/div/div/div/form/div[1]/div[5]/div[2]/div/input");
+                    fileSize.SendKeys("abc");
+
+                    var fullDescription = chromeDriver.FindElementByClassName("wysihtml5-sandbox");
+                    fullDescription.SendKeys("abc");
+
+
+                    System.Threading.Thread.Sleep(10000);
+
+                    var submit = chromeDriver.FindElementByXPath("/html/body/div/div/section[2]/div/div/div/form/div[2]/button");
+                    submit.Click();
+
+                    System.Threading.Thread.Sleep(10000);
+
+                    chromeDriver.Navigate().Back();
+
+                    System.Threading.Thread.Sleep(5000);
                 }
-
-
             }
             Console.ReadKey();
         }
