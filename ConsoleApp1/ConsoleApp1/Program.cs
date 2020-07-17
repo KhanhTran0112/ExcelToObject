@@ -93,7 +93,7 @@ namespace ConsoleApp1
                 string description = "z" + reader[7].ToString() + "z";
                 description = description.Replace("zDescription", "").Replace("morez", "");
                 apps.Add(new GameAndApp(reader[1].ToString(), reader[2].ToString(), reader[3].ToString(), reader[4].ToString(), reader[5].ToString(), reader[6].ToString(), description, reader[8].ToString() ));
-                //Console.WriteLine("{0}\t{1}\t{2}\t{3}\t{4}", reader[0].ToString(), reader[1].ToString(), reader[2].ToString(), reader[3].ToString(), reader[4].ToString());
+                
             }
         }
 
@@ -102,6 +102,7 @@ namespace ConsoleApp1
             Console.OutputEncoding = Encoding.UTF8;
             //ReadExcel();
             ReadData();
+
 
             Console.Write("Gõ run để chạy: ");
             string run = Console.ReadLine();
@@ -131,9 +132,17 @@ namespace ConsoleApp1
                     var description = chromeDriver.FindElementByXPath("/html/body/div/div/section[2]/div/div/div/form/div[1]/div[2]/input");
                     description.SendKeys(apps[1].name);
 
-                    SelectElement select = new SelectElement(chromeDriver.FindElementByXPath("/html/body/div/div/section[2]/div/div/div/form/div[1]/div[3]/div[1]/div/div/button/div/div"));
-                    select.SelectByText("Option3");
-                    select.SelectByValue("");
+                    var category = chromeDriver.FindElementByName("category");
+                    var selectCategory = new SelectElement(category);
+                    selectCategory.SelectByIndex(9);
+
+                    var platform = chromeDriver.FindElementByName("platform");
+                    var selectPlatform = new SelectElement(platform);
+                    selectPlatform.SelectByIndex(2);
+
+                    var type = chromeDriver.FindElementByName("type");
+                    var selectType = new SelectElement(type);
+                    selectType.SelectByIndex(2);
 
 
                     var developer = chromeDriver.FindElementByXPath("/html/body/div/div/section[2]/div/div/div/form/div[1]/div[4]/div[1]/div/input");
